@@ -49,7 +49,7 @@
 </template>
 
 <script>
-    import Home from "./Home";
+    import App from "./App";
     import LoginService from '@/services/LoginService';
     
     const loginService = new LoginService();
@@ -92,7 +92,7 @@
                     .login(this.user)
                     .then(() => {
                         this.processing = false;
-                        this.$navigateTo(Home, { clearHistory: true });
+                        this.$navigateTo(App, { clearHistory: true });
                     })
                     .catch(() => {
                         this.processing = false;
@@ -109,7 +109,7 @@
                     return;
                 }
 
-                this.$loginService
+                loginService
                     .register(this.user)
                     .then(() => {
                         this.processing = false;
@@ -135,7 +135,7 @@
                     cancelButtonText: "Annuler"
                 }).then(data => {
                     if (data.result) {
-                        this.$loginService
+                        loginService
                             .resetPassword(data.text.trim())
                             .then(() => {
                                 this.alert(

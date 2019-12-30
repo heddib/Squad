@@ -1,8 +1,8 @@
 import Login from "../components/Login";
-import Home from "../components/Home";
+import App from "../components/App";
 
 const routes = {
     login: Login,
-    home: Home
+    app: App
 }
 export default routes;

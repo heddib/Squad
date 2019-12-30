@@ -1,34 +1,20 @@
 <template>
     <StackLayout id="home">
-        <Label textWrap="true" :text="message" class="h1 align-center extra-bold" />
-        <Button width="30" height="5" class="hr" />
-        <Label textWrap="true" text="Quel métier t'intéresse ?"
-            class="h2 align-center bold" />
-        <AbsoluteLayout width="80" height="80" class="search-btn" @tap="toggleSearch">
-            <Image src="~/assets/icons/Search-White.png" left="28" top="25" width="25"
-                height="25" class="icon" />
-            <Button class="background" left="0" top="0" width="100%" height="100%"
-                @tap="toggleSearch" />
-        </AbsoluteLayout>
-
-        <Label textWrap="true" text="Fais une recherche" class="h3 description-label align-center semi-bold" />
+        <Label textWrap="true" text="Liste des professionnels" class="h1 align-center extra-bold" />
     </StackLayout>
 </template>
 
 <script>
-    import { getString } from 'tns-core-modules/application-settings';
+    
     export default {
         data() {
             return {
-                message: "Bonjour, " + JSON.parse(getString('user')).firstname
+                
             };
         },
 
         methods: {
-            toggleSearch() {
-                this.$emit("togglesearch");
-                console.log("CLICK");
-            }
+            
         }
     };
 </script>

@@ -1,12 +1,14 @@
 import Vue from 'nativescript-vue'
 import App from './components/App'
-import { isAndroid, isIOS } from 'tns-core-modules/platform';
+import { isAndroid, isIOS } from 'tns-core-modules/platform'
 
 import VueDevtools from 'nativescript-vue-devtools'
 import store from './store'
 
+import orientation from './nativescript-orientation'
+
 import routes from "./routes";
-import BackendService from "./services/BackendService";
+import BackendService from "./services/BackendService"
 
 if(TNS_ENV !== 'production') {
   Vue.use(VueDevtools)
@@ -22,5 +24,11 @@ const backendService = new BackendService();
 
 new Vue({
   store,
-  render: h => h("frame", [h(backendService.isLoggedIn() ? routes.home : routes.login)])
+  render: h => h("frame", [h(backendService.isLoggedIn() ? routes.app : routes.login)]),
+  mounted() {
+    setTimeout(() => {
+        orientation.setOrientation('portrait')
+        orientation.disableRotation();
+    },0)
+}
 }).$start()

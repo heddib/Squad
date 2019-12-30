@@ -8,7 +8,8 @@ export default class LoginService extends BackendService {
 
     login(user) {
         console.log('LOGIN BEING HERE')
-        console.log('Headers : ' +JSON.stringify(this.getCommonHeaders()))
+        console.log('URL : ' + this.baseUrl + "users/authenticate")
+        console.log('Headers : ' + JSON.stringify(this.getCommonHeaders()))
         console.log(encodeGetParams({
             username: user.username,
             password: user.password
@@ -27,7 +28,7 @@ export default class LoginService extends BackendService {
         .then(this.getJson)
         .then(data => {
             console.log('User logged in with token: ' + data.authdata.username)
-            super.user =JSON.stringify(data.authdata)
+            super.user = JSON.stringify(data.authdata)
         })
     }
 
@@ -42,8 +43,8 @@ export default class LoginService extends BackendService {
                 password: user.password
             }),
         })
-        .then(this.validateCode())
-        .then(this.getJson())
+        .then(this.validateCode)
+        .then(this.getJson)
         .then(data => {
             console.info('User registered: ', data)
         })
@@ -74,8 +75,6 @@ export default class LoginService extends BackendService {
         // return authorization header with basic auth credentials
         //console.log(super.user)
         //let user = JSON.parse(super.user);
-
-        console.log('IS LOGGED IN ? : ' + this.isLoggedIn())
 
         if(this.isLoggedIn()) {
             console.log('CO')
