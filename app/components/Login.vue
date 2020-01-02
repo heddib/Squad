@@ -7,6 +7,9 @@
 
                 <GridLayout rows="auto, auto, auto">
                     <StackLayout row="0" class="input-field">
+                        <MDTextField helper="example helper" placeholderColor="green" keyboardType="datetime"
+        hint="i am an hint" returnKeyType="next" @focus="onFocus" @blur="onBlur"
+        @textChange="onTextChange"/>
                         <TextField class="input" hint="Nom d'utilisateur" :isEnabled="!processing"
                             keyboardType="text" autocorrect="false"
                             autocapitalizationType="none" v-model="user.username"

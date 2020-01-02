@@ -10,6 +10,10 @@ import orientation from './nativescript-orientation'
 import routes from "./routes";
 import BackendService from "./services/BackendService"
 
+import TextFieldPlugin from 'nativescript-material-textfield/vue';
+
+Vue.use(TextFieldPlugin);
+
 if(TNS_ENV !== 'production') {
   Vue.use(VueDevtools)
 }
