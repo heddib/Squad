@@ -27,8 +27,8 @@ new Vue({
   render: h => h("frame", [h(backendService.isLoggedIn() ? routes.app : routes.login)]),
   mounted() {
     setTimeout(() => {
-        orientation.setOrientation('portrait')
-        orientation.disableRotation();
+        //orientation.setOrientation('portrait')
+        //orientation.disableRotation();
     },0)
 }
 }).$start()
