@@ -33,14 +33,20 @@ export default class LoginService extends BackendService {
     }
 
     register(user) {
+        console.log(user.type);
+        
         return http.request({
             url: this.baseUrl + "users/register",
             method: "POST",
-            headers: this.getCommonHeaders(),
-            body: JSON.stringify({
+            headers: this.getCommonHeaders(),  
+            content: encodeGetParams({
                 username: user.username,
                 email: user.email,
-                password: user.password
+                password: user.password,
+                password_confirmation: user.confirmPassword,
+                firstname: user.firstname,
+                lastname: user.lastname,
+                type: user.type
             }),
         })
         .then(this.validateCode)
@@ -69,6 +75,11 @@ export default class LoginService extends BackendService {
     logout() {
         // LOGOUT
         super.user = ""
+    }
+
+    isFreshAccount() {
+        console.log(JSON.parse(super.user).username);
+        return true;
     }
 
     getCommonHeaders() {

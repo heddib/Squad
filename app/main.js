@@ -5,19 +5,23 @@ import { isAndroid, isIOS } from 'tns-core-modules/platform'
 import VueDevtools from 'nativescript-vue-devtools'
 import store from './store'
 
-import orientation from './nativescript-orientation'
+import RadSideDrawer from 'nativescript-ui-sidedrawer/vue';
 
 import routes from "./routes";
 import BackendService from "./services/BackendService"
 
-import TextFieldPlugin from 'nativescript-material-textfield/vue';
-
-Vue.use(TextFieldPlugin);
-
 if(TNS_ENV !== 'production') {
   Vue.use(VueDevtools)
 }
+
+import DateTimePicker from "nativescript-datetimepicker/vue";
+Vue.use(DateTimePicker);
   
+Vue.use(RadSideDrawer);
+
+Vue.registerElement("PreviousNextView", () => require("nativescript-iqkeyboardmanager"). PreviousNextView)
+Vue.registerElement("TextViewWithHint", () => require("nativescript-iqkeyboardmanager").TextViewWithHint)
+
 // Prints Vue logs when --env.production is *NOT* set while building
 Vue.config.silent = (TNS_ENV === 'production')
 

@@ -8,7 +8,7 @@
             <Image src="~/assets/icons/Search-Red.png" height="20" minWidth="20"
                 margin="0 12" />
             <TextView :width="searchBarWidth" editable="true" v-model="searchQuery"
-                hint="ex: Paris, Tokyo..." class="input extra-bold" :class="{empty: (searchQuery == '')}"
+                hint="ex: Apiculteur, Acousticien..." class="input extra-bold" :class="{empty: (searchQuery == '')}"
                 ref="searchBar" maxLength="8">
             </TextView>
             <Image src="~/assets/icons/Cross-red.png" height="16" minWidth="16"
@@ -84,39 +84,7 @@
                 searchBarWidth: "0%",
                 cityOverviewPage: CityOverview,
                 searchQuery: "",
-                cities: [
-                    "Johannesburg",
-                    "Berlin",
-                    "Toronto",
-                    "Mumbai",
-                    "Munich",
-                    "Madrid",
-                    "Dublin",
-                    "Chennai",
-                    "India",
-                    "Los Angeles",
-                    "Miami",
-                    "Prague",
-                    "Vienna",
-                    "Shanghai",
-                    "Rome",
-                    "Taipei",
-                    "Osaka",
-                    "Milan",
-                    "Amsterdam",
-                    "Barcelona",
-                    "Istanbul",
-                    "Hong Kong",
-                    "Kuala Lumpur",
-                    "New York",
-                    "Seoul",
-                    "Tokyo",
-                    "Singapore",
-                    "Dubai",
-                    "Paris",
-                    "London",
-                    "Bangkok"
-                ]
+                cities: []
             };
         }
     };
