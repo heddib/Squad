@@ -3,27 +3,27 @@
         <StackLayout orientation="vertical">
             <AbsoluteLayout width="100%" height="100%">
                 <FlexboxLayout flexDirection="column" height="100%" width="100%"
-                    id="place">
+                    id="pro">
                     <Header class="header" :canBack="canBack" />
                     <StackLayout width="100%" height="25" flexGrow="7">
                         <ScrollView orientation="vertical">
                             <StackLayout orientation="vertical">
                                 <StackLayout orientation="vertical" class="head">
-                                    <Label :text="place.name" class="title bold" />
-                                    <Label :text="place.type" class="subTitle semi-bold" />
-                                    <FlexboxLayout flexDirection="row" height="12"
+                                    <Label :text="pro.username" class="title bold" />
+                                    <Label :text="pro.location" class="subTitle semi-bold" />
+                                    <!--<FlexboxLayout flexDirection="row" height="12"
                                         marginTop="4">
                                         <Image src="~/assets/icons/Star-Red.png"
-                                            v-for="star in place.stars" :key="star"
+                                            v-for="star in pro.stars" :key="star"
                                             marginRight="4" />
                                         <Image src="~/assets/icons/Star-grey.png"
-                                            v-for="star in (5 - place.stars)"
+                                            v-for="star in (5 - pro.stars)"
                                             marginRight="4" :key="(star * 10)" />
-                                    </FlexboxLayout>
+                                    </FlexboxLayout>-->
                                 </StackLayout>
                                 <AbsoluteLayout width="100%" height="210">
                                     <StackLayout top="0" left="0" :height="(210 - 20)"
-                                        width="100%" :backgroundImage="'~/assets/media/' + place.media" class="image">
+                                        width="100%" :backgroundImage="'~/assets/media/' + pro.media" class="image">
                                     </StackLayout>
                                     <StackLayout orientation="horizontal"
                                         height="40" class="actions" width="100%">
@@ -42,11 +42,11 @@
                                     </StackLayout>
                                 </AbsoluteLayout>
                                 <StackLayout orientation="vertical" class="text">
-                                    <Label text="Lorem ipsum" class="title bold" />
+                                    <Label text="A propos de moi" class="title bold" />
                                     <TextView editable="false" marginBottom="25"
                                         class="desc semi-bold" padding="0">
                                         <FormattedString>
-                                            <Span :text="lorem" />
+                                            <Span :text="pro.bio" />
                                         </FormattedString>
                                     </TextView>
                                 </StackLayout>
@@ -66,14 +66,13 @@
 
     export default {
         props: {
-            place: {
+            pro: {
                 type: Object
             }
         },
         data() {
             return {
                 canBack: true,
-                lorem: `Celeri discursantes optandi nobis nec praedam qui similes parvi aut similes umquam optandi poterat impetraverint si nobis rapiunt nec discursantes qui poterat rapacium nobis milvorum aut volatu nobis impetraverint impetraverint parvi momento volatu impetraverint qui celeri parvi nisi amici similes tamen optandi parvi discursantes impetraverint volatu non discursantes nisi.`
             };
         },
 

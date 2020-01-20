@@ -29,6 +29,7 @@ export default class LoginService extends BackendService {
         .then(data => {
             console.log('User logged in with token: ' + data.authdata.username)
             super.user = JSON.stringify(data.authdata)
+            
         })
     }
 
@@ -77,9 +78,28 @@ export default class LoginService extends BackendService {
         super.user = ""
     }
 
-    isFreshAccount() {
-        console.log(JSON.parse(super.user).username);
-        return true;
+    getUser(username) {
+        return http.request({
+            url: this.baseUrl + "users/" + username + "/",
+            method: "GET",
+            headers: this.getCommonHeaders(),
+        })
+        .then(this.validateCode)
+        .then(this.getJson)
+        .then(data => {
+            console.log('User data: ' + JSON.stringify(data))
+            return data;
+        })
+    }
+
+    async isFreshAccount() {
+        let fresh = false;
+        await this.getUser(JSON.parse(super.user).username).then(acc => {
+            if (acc) {
+              fresh = acc.fresh;
+            }
+          });
+        return fresh;
     }
 
     getCommonHeaders() {
@@ -88,22 +108,20 @@ export default class LoginService extends BackendService {
         //let user = JSON.parse(super.user);
 
         if(this.isLoggedIn()) {
-            console.log('CO')
-            console.log(super.user)
             let user = JSON.parse(super.user);
-            if (user && user.authdata) {
+            console.log('TOKEN : ' + user.token);
+            
+            if (user) {
                 return { 
                     'Content-Type': 'application/x-www-form-urlencoded',
-                    'Authorization': 'Basic ' + user.authdata
+                    'Authorization': 'Basic ' + user.token
                 };
             }
         } else {
-            console.log('PAS CO')
             return {
                 'Content-Type': 'application/x-www-form-urlencoded',
             };
         }
-
         /* if (user && user.authdata) {
             return { 
                 'Content-Type': 'application/json',

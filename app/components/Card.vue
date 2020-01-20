@@ -1,34 +1,34 @@
 <template>
     <FlexboxLayout class="card" justifyContent="space-between" :class="{'active':(index == active), 'inactive':(index != active)}"
-        @tap="goToPlace(place)">
+        @tap="goToPro(pro)">
         <AbsoluteLayout width="100%" height="100%">
             <Image src="~/assets/icons/box-shadow.png" height="100%" width="100%"
                 class="background" />
             <FlexboxLayout flexDirection="column" width="96%" height="97%"
                 padding="12 20 30 12">
                 <StackLayout orientation="vertical" class="head">
-                    <Label :text="place.name" class="title bold" />
-                    <Label :text="place.type" class="subTitle semi-bold" />
-                    <FlexboxLayout flexDirection="row" height="12" marginTop="4">
-                        <Image src="~/assets/icons/Star-Red.png" v-for="star in place.stars"
+                    <Label :text="pro.username" class="title bold" />
+                    <Label :text="pro.location" class="subTitle semi-bold" />
+                    <!--<FlexboxLayout flexDirection="row" height="12" marginTop="4">
+                        <Image src="~/assets/icons/Star-Red.png" v-for="star in pro.stars"
                             :key="star" marginRight="4" />
-                        <Image src="~/assets/icons/Star-grey.png" v-for="star in (5 - place.stars)"
+                        <Image src="~/assets/icons/Star-grey.png" v-for="star in (5 - pro.stars)"
                             :key="(star * 10)" marginRight="4" />
-                    </FlexboxLayout>
+                    </FlexboxLayout>-->
                 </StackLayout>
-                <StackLayout orientation="vertical" :backgroundImage="'~/assets/media/' + place.media"
+                <!--<StackLayout orientation="vertical" :backgroundImage="'~/assets/media/' + pro.media"
                     height="58%" width="100%" class="img">
-                </StackLayout>
+                </StackLayout>-->
             </FlexboxLayout>
         </AbsoluteLayout>
     </FlexboxLayout>
 </template>
 <script>
-    import Place from "./Place";
+    import Pro from "./Pro";
 
     export default {
         props: {
-            place: {
+            pro: {
                 type: Object
             },
             index: {
@@ -38,13 +38,13 @@
                 type: Number
             }
         },
-
+        
         methods: {
-            goToPlace(place) {
+            goToPro(pro) {
                 console.log("card")
-                this.$navigateTo(Place, {
+                this.$navigateTo(Pro, {
                     props: {
-                        place: place
+                        pro: pro
                     }
                 });
             }

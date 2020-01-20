@@ -1,6 +1,6 @@
 <template>
   <Page class="page" actionBarHidden="true">
-    <ScrollView>
+    
       <AbsoluteLayout width="100%" height="100%">
         <FlexboxLayout
           width="100%"
@@ -26,15 +26,15 @@
           width="100%"
           id="app"
         >
-          <Header class="header" :secondary="isSearching" v-show="!isFreshAccount()" />
+          <Header class="header" :secondary="isSearching" v-show="!fresh" />
           <StackLayout
             class="home-panel"
             flexGrow="7"
             id="view"
             v-show="selectedTab == 1"
           >
-            <SetupAccount v-show="isFreshAccount()" />
-            <Home v-on:togglesearch="toggleSearch" v-if="!isSearching" v-show="!isFreshAccount()" />
+            <SetupAccount v-show="fresh" />
+            <Home v-on:togglesearch="toggleSearch" v-if="!isSearching" v-show="!fresh" />
             <Searching
               v-on:togglesearch="toggleSearch"
               v-else
@@ -49,10 +49,10 @@
           >
             <List />
           </StackLayout>
-          <Footer class="footer" v-if="!isSearching" v-show="!isFreshAccount()" />
+          <Footer class="footer" v-if="!isSearching" v-show="!fresh" />
         </FlexboxLayout>
       </AbsoluteLayout>
-    </ScrollView>
+    
   </Page>
 </template>
 
@@ -82,9 +82,13 @@ export default {
     list() {
       this.selectedTab = 2;
     },
-    isFreshAccount() {
-        return loginService.isFreshAccount();
-    }
+    async checkFreshAccount() {
+      let fresh = false;
+
+      await loginService.isFreshAccount().then(data => fresh = data)
+      
+      this.fresh = fresh;
+    },
   },
 
   data() {
@@ -93,11 +97,13 @@ export default {
       isSearching: false,
       width: 0,
       height: 0,
-      selectedTab: 1
+      selectedTab: 1,
+      fresh: false
     };
   },
 
   mounted() {
+    this.checkFreshAccount();
     this.width = platform.screen.mainScreen.widthDIPs;
     this.height = platform.screen.mainScreen.heightDIPs;
     if (application.ios) {
