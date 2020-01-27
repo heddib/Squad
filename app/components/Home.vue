@@ -35,7 +35,7 @@
 
 <style scoped>
     #home .hr {
-        background: linear-gradient(-45deg, #ff067F, #ff0154);
+        background: linear-gradient(-45deg, #067aff, #0178ff);
         border-radius: 16px;
         margin-bottom: 25;
         opacity: 0;
@@ -99,7 +99,7 @@
         width: 100;
         height: 100;
         border-radius: 16;
-        background: linear-gradient(-45deg, #ff067F, #ff0154);
+        background: linear-gradient(-45deg, #067aff, #0178ff);
     }
 
     #home .description-label {

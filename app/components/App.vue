@@ -161,7 +161,7 @@ export default {
 }
 
 #background.secondary {
-  background: linear-gradient(-45deg, #ff067f, #ff0154);
+  background: linear-gradient(-45deg, #067aff, #0178ff);
   animation-name: circle;
   animation-duration: 1s;
   animation-fill-mode: forwards;

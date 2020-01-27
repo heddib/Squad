@@ -106,7 +106,8 @@ export default {
       jobs.push(k.job);
     });
 
-    this.jobs = jobs;
+    let unique = [...new Set(jobs)];
+    this.jobs = unique;
   },
 
   computed: {
